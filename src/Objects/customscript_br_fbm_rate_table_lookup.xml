@@ -1,0 +1,25 @@
+<workflowactionscript scriptid="customscript_br_fbm_rate_table_lookup">
+  <description>Computes weighted values for each shipping rate table based on default values on item master cost record.</description>
+  <isinactive>F</isinactive>
+  <name>Rate Table Lookup - FBM</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifyowner>T</notifyowner>
+  <notifyuser>F</notifyuser>
+  <returnrecordtype></returnrecordtype>
+  <returntype></returntype>
+  <scriptfile>[/SuiteScripts/Item Costing/BR_WAS_fbm_rate_table.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_br_fbm_rate_table_lookup">
+      <allemployees>F</allemployees>
+      <allpartners>F</allpartners>
+      <allroles>T</allroles>
+      <audslctrole></audslctrole>
+      <isdeployed>T</isdeployed>
+      <loglevel>ERROR</loglevel>
+      <recordtype>[scriptid=customrecord_br_shipping_rate_table]</recordtype>
+      <runasrole>ADMINISTRATOR</runasrole>
+      <status>RELEASED</status>
+    </scriptdeployment>
+  </scriptdeployments>
+</workflowactionscript>

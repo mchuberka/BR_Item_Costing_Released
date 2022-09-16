@@ -1,0 +1,25 @@
+<workflowactionscript scriptid="customscript_br_sold_cost_processing_fee">
+  <description>A minor calculation (we aren&apos;t currently using because the values are insignificant); this calculates EDI and Credit Card processing fees.</description>
+  <isinactive>F</isinactive>
+  <name>Sold Cost Processing Fees</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifyowner>T</notifyowner>
+  <notifyuser>F</notifyuser>
+  <returnrecordtype></returnrecordtype>
+  <returntype></returntype>
+  <scriptfile>[/SuiteScripts/Item Costing/BR_WAS_ProcessingFees.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_br_sold_cost_processing_fee">
+      <allemployees>F</allemployees>
+      <allpartners>F</allpartners>
+      <allroles>T</allroles>
+      <audslctrole></audslctrole>
+      <isdeployed>T</isdeployed>
+      <loglevel>ERROR</loglevel>
+      <recordtype>[scriptid=customrecord_br_processing_fees]</recordtype>
+      <runasrole>ADMINISTRATOR</runasrole>
+      <status>RELEASED</status>
+    </scriptdeployment>
+  </scriptdeployments>
+</workflowactionscript>

@@ -1,0 +1,25 @@
+<workflowactionscript scriptid="customscript_br_item_costing_contained">
+  <description>Unified code base for calculating item costing records on save/update.</description>
+  <isinactive>F</isinactive>
+  <name>Item Costing Contained</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifyowner>T</notifyowner>
+  <notifyuser>F</notifyuser>
+  <returnrecordtype></returnrecordtype>
+  <returntype></returntype>
+  <scriptfile>[/SuiteScripts/Item Costing/BR_WAS_Costing_Contained.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_br_item_costing_contained">
+      <allemployees>F</allemployees>
+      <allpartners>F</allpartners>
+      <allroles>T</allroles>
+      <audslctrole></audslctrole>
+      <isdeployed>T</isdeployed>
+      <loglevel>ERROR</loglevel>
+      <recordtype>[scriptid=customrecord_br_item_master_cst1]</recordtype>
+      <runasrole>ADMINISTRATOR</runasrole>
+      <status>RELEASED</status>
+    </scriptdeployment>
+  </scriptdeployments>
+</workflowactionscript>

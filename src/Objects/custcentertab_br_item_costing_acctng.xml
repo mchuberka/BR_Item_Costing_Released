@@ -1,0 +1,10 @@
+<centertab scriptid="custcentertab_br_item_costing_acctng">
+  <allcustomers>F</allcustomers>
+  <allemployees>F</allemployees>
+  <allpartners>F</allpartners>
+  <allroles>F</allroles>
+  <allvendors>F</allvendors>
+  <audslctrole>[scriptid=customrole1013_11]|[scriptid=customrole_br_ap_supervisor]|[scriptid=customrole_br_ar_manager]|[scriptid=customrole_br_cfo]</audslctrole>
+  <center>ACCOUNTCENTER</center>
+  <label>Item Costing</label>
+</centertab>

@@ -1,0 +1,26 @@
+<workflowactionscript scriptid="customscript_br_itemcost_fbm_deliverdcst">
+  <description>Aggregates the rate tables for a particular pound (lb) weight, across zones, ship methods, etc.&#xd;
+This provides the lookup for each item based on their weight.</description>
+  <isinactive>F</isinactive>
+  <name>Item Master Cost - FBM Delivered Costs</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifyowner>T</notifyowner>
+  <notifyuser>F</notifyuser>
+  <returnrecordtype></returnrecordtype>
+  <returntype></returntype>
+  <scriptfile>[/SuiteScripts/Item Costing/BR_WAS_Costing_Delivered_FBM.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_br_itemcost_fbm_deliverdcst">
+      <allemployees>F</allemployees>
+      <allpartners>F</allpartners>
+      <allroles>T</allroles>
+      <audslctrole></audslctrole>
+      <isdeployed>T</isdeployed>
+      <loglevel>ERROR</loglevel>
+      <recordtype>[scriptid=customrecord_br_delivered_costs]</recordtype>
+      <runasrole>ADMINISTRATOR</runasrole>
+      <status>RELEASED</status>
+    </scriptdeployment>
+  </scriptdeployments>
+</workflowactionscript>

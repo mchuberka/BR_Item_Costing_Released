@@ -1,0 +1,25 @@
+<workflowactionscript scriptid="customscript_br_itemcost_fba_fulfillfees">
+  <description>Calculates FBA fees based on item size combined with Amazon Size Tier logic with the subtier costs associated.</description>
+  <isinactive>F</isinactive>
+  <name>FBA Fulfillment Fees</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifyowner>T</notifyowner>
+  <notifyuser>F</notifyuser>
+  <returnrecordtype></returnrecordtype>
+  <returntype></returntype>
+  <scriptfile>[/SuiteScripts/Item Costing/BR_WAS_Costing_FBA_Fulfillment.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_br_itemcost_fba_fulfillfees">
+      <allemployees>F</allemployees>
+      <allpartners>F</allpartners>
+      <allroles>T</allroles>
+      <audslctrole></audslctrole>
+      <isdeployed>T</isdeployed>
+      <loglevel>ERROR</loglevel>
+      <recordtype>[scriptid=customrecord_br_fba_fulfillment_rates]</recordtype>
+      <runasrole>ADMINISTRATOR</runasrole>
+      <status>RELEASED</status>
+    </scriptdeployment>
+  </scriptdeployments>
+</workflowactionscript>

@@ -1,0 +1,10 @@
+<centertab scriptid="custcentertab_br_product_development">
+  <allcustomers>F</allcustomers>
+  <allemployees>F</allemployees>
+  <allpartners>F</allpartners>
+  <allroles>F</allroles>
+  <allvendors>F</allvendors>
+  <audslctrole>ADMINISTRATOR|[scriptid=customrole1026]</audslctrole>
+  <center>BASIC</center>
+  <label>Product Development</label>
+</centertab>

@@ -1,0 +1,24 @@
+<customlist scriptid="customlist_br_item_classification">
+  <description>Classification list for Items. Duplicates tags on Item Record for use by other (custom) records.</description>
+  <isinactive>F</isinactive>
+  <ismatrixoption>F</ismatrixoption>
+  <isordered>T</isordered>
+  <name>Item Classification</name>
+  <customvalues>
+    <customvalue scriptid="val_15120863_4311009_sb1_745">
+      <abbreviation>F</abbreviation>
+      <isinactive>F</isinactive>
+      <value>FBM</value>
+    </customvalue>
+    <customvalue scriptid="val_15120864_4311009_sb1_263">
+      <abbreviation>F</abbreviation>
+      <isinactive>F</isinactive>
+      <value>FBA</value>
+    </customvalue>
+    <customvalue scriptid="val_15120865_4311009_sb1_271">
+      <abbreviation>B</abbreviation>
+      <isinactive>F</isinactive>
+      <value>Bulk</value>
+    </customvalue>
+  </customvalues>
+</customlist>
