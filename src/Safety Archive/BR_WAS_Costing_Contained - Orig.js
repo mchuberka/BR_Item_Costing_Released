@@ -16,7 +16,7 @@
  */
 
 
-define(['N/search', 'N/log', 'N/record', './BR_LIB_Item_Costing'],
+define(['N/search', 'N/log', 'N/record', '../FileCabinet/SuiteScripts/Item Costing/BR_LIB_Item_Costing'],
     /**
      * @return {{
      *   onAction: Function,
@@ -56,9 +56,6 @@ define(['N/search', 'N/log', 'N/record', './BR_LIB_Item_Costing'],
 
             var itemInformation = itemInformationMapping[itemId];
                 var basePrice = itemInformation.basePrice;
-                    if(!basePrice){
-                        basePrice = 0;
-                    }
                 var countryOfOrigin = itemInformation.countryOfOrigin;
                 var fbaItem = itemInformation.fbaItem;
                 var bulkItem = itemInformation.bulkItem;
@@ -72,7 +69,7 @@ define(['N/search', 'N/log', 'N/record', './BR_LIB_Item_Costing'],
                 var itemHeight = itemInformation.itemHeight;
                 var itemDimWeight = itemInformation.itemDimWeight;
                 var amazonSizeTier = itemInformation.amazonSizeTier;
-               // var maxQtyPerLabel = itemInformation.maxQtyPerLabel;
+                var maxQtyPerLabel = itemInformation.maxQtyPerLabel;
                 var itemDescription = itemInformation.itemDescription;
                 var preferredVendor = itemInformation.preferredVendor;
                 var itemCategory = itemInformation.itemCategory;
@@ -85,13 +82,9 @@ define(['N/search', 'N/log', 'N/record', './BR_LIB_Item_Costing'],
                 logModule.debug({title: 'ASIN', details: amazonASIN});
                 logModule.debug({title: 'Use Container Capacity', details: useContainerCapacityQty});
                 logModule.debug({title: 'Product Status', details: productStatus});
-                logModule.debug({title: 'Item Length', details: itemLength});
-                logModule.debug({title: 'Item Width', details: itemWidth});
-                logModule.debug({title: 'Item Height', details: itemHeight});
 
 
                 var itemLengthGirth = (Math.round(itemLength) + (2 * Math.round(itemWidth)) + (2 * Math.round(itemHeight)));
-                logModule.debug({title: 'Length/Girth', details: itemLengthGirth});
 
                 var itemWeightCeil = Math.ceil(itemWeight);
 
@@ -110,7 +103,7 @@ define(['N/search', 'N/log', 'N/record', './BR_LIB_Item_Costing'],
             rec.setValue({fieldId: 'custrecord_br_cst1_item_height', value: itemHeight});
             rec.setValue({fieldId: 'custrecord_br_cst1_item_dimweight', value: itemDimWeight});
             rec.setValue({fieldId: 'custrecord_br_cst1_amazon_size_tier', value: amazonSizeTier});
-            //rec.setValue({fieldId: 'custrecord_br_cst1_item_max_per_label', value: maxQtyPerLabel});
+            rec.setValue({fieldId: 'custrecord_br_cst1_item_max_per_label', value: maxQtyPerLabel});
             rec.setValue({fieldId: 'custrecord_br_cst1_item_length_girth', value: itemLengthGirth});
             rec.setValue({fieldId: 'custrecord_br_cst1_item_description', value: itemDescription});
             rec.setValue({fieldId: 'custrecord_br_cst1_item_preferred_vendor', value: preferredVendor});

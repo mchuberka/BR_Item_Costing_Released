@@ -12,14 +12,14 @@
  * Version 0.1
  */
 
-define(['N/search', 'N/log'],
+define(['N/search', 'N/log', './BR_LIB_Item_Costing'],
 
     /**
      * @return {{
      *   onAction: Function,
      * }}
      */
-    function (search, log) {
+    function (searchModule, logModule, itemCostingLibrary) {
 
         /**
          * @param {OnActionContext} context
@@ -32,9 +32,9 @@ define(['N/search', 'N/log'],
 
                 var itemASIN = record.getValue({fieldId: 'custrecord_br_adcost_item_asin'});
 
-            log.debug({title: 'Item ASIN', details: itemASIN});
+            logModule.debug({title: 'Item ASIN', details: itemASIN});
 
-                var itemSearch = search.create({
+                var itemSearch = searchModule.create({
                     type: "inventoryitem",
                     filters:
                         [
@@ -42,11 +42,13 @@ define(['N/search', 'N/log'],
                             "AND",
                             ["isinactive","is","F"],
                             "AND",
-                            ["custitem_fa_amz_asin","anyof",itemASIN]
+                            ["custitem_fa_amz_asin","is", itemASIN],
+                            "AND",
+                            ["nameinternal","doesnotstartwith","R"]
                         ],
                     columns:
                         [
-                            search.createColumn({name: "internalid"}),
+                            searchModule.createColumn({name: "internalid"}),
                         ]
                 });
                 var resultSet = itemSearch.run();
@@ -56,33 +58,36 @@ define(['N/search', 'N/log'],
                     }) [0];
 
                     var itemId = firstResult.getValue({name: 'internalid'});
-                log.debug ({title: 'Internal ID', details: itemId});
+                logModule.debug ({title: 'Internal ID', details: itemId});
 
 
                 var itemInformationMapping = itemCostingLibrary.itemInformationSearch(itemId);
 
                 var itemInformation = itemInformationMapping[itemId];
-                    var itemName = itemInformation.itemName;
                     var itemUPC = itemInformation.itemUPC;
                     var itemDescription = itemInformation.itemDescription;
                     var itemCategory = itemInformation.itemCategory;
+                    var itemCategoryId = itemInformation.itemCategoryId;
                     var itemFamily = itemInformation.itemFamily;
+                    var itemFamilyId = itemInformation.itemFamilyId;
                     var productStatus = itemInformation.productStatus;
 
-                logModule.debug({title: 'Item', details: itemName});
                 logModule.debug({title: 'Category', details: itemCategory});
+                logModule.debug({title: 'Category ID', details: itemCategoryId});
+                logModule.debug({title: 'Family', details: itemFamily});
+                logModule.debug({title: 'Family ID', details: itemFamilyId});
 
                 //set field values
-                rec.setValue({fieldId: 'custrecord_br_adcost_item_name', value: itemName});
-                rec.setValue({fieldId: 'custrecord_br_adcost_item_upc', value: itemUPC});
-                rec.setValue({fieldId: 'custrecord_br_adcost_item_description', value: itemDescription});
-                rec.setValue({fieldId: 'custrecord_br_adcost_item_category', value: itemCategory});
-                rec.setValue({fieldId: 'custrecord_br_adcost_item_family', value: itemFamily});
-                rec.setValue({fieldId: 'custrecord_br_adcost_product_status', value: productStatus});
+                record.setValue({fieldId: 'custrecord_br_adcost_item_name', value: itemId});
+                record.setValue({fieldId: 'custrecord_br_adcost_item_upc', value: itemUPC});
+                record.setValue({fieldId: 'custrecord_br_adcost_item_description', value: itemDescription});
+                record.setValue({fieldId: 'custrecord_br_adcost_item_category', value: itemCategoryId});
+                record.setValue({fieldId: 'custrecord_br_adcost_item_family', value: itemFamilyId});
+                record.setValue({fieldId: 'custrecord_br_adcost_product_status', value: productStatus});
 
 
             } catch (e) {
-                log.error('onAction', JSON.parse(JSON.stringify(e)));
+                logModule.error('onAction', JSON.parse(JSON.stringify(e)));
             }
         }
 

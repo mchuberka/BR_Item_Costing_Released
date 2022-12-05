@@ -51,7 +51,12 @@ define(['N/search', 'N/log', 'N/record', './BR_LIB_Item_Costing'],
 //*******************************************************
 
             //Get Required/Common field values
-            var purchasePrice = rec.getValue({fieldId: 'custrecord_br_itdv_item_purchase_price'});
+            var firstCost = rec.getValue({fieldId: 'custrecord_br_itdv_item_purchase_price'});
+            var firstCostBuffer = rec.getValue({fieldId: 'custrecord_br_itdv_first_cost_buffer'});
+                if (!firstCostBuffer){
+                    firstCostBuffer = 0;
+                }
+            var purchasePrice = firstCost + firstCostBuffer;
             var fbaItem = rec.getValue({fieldId: 'custrecord_br_itdv_fba'});
             var bulkItem = rec.getValue({fieldId: 'custrecord_br_itdv_bulk_item'});
             var htsCode = rec.getValue({fieldId: 'custrecord_br_itdv_hts_code'});
@@ -93,9 +98,8 @@ define(['N/search', 'N/log', 'N/record', './BR_LIB_Item_Costing'],
             //Get Calculation Variables (price or margin)
                 //Target Selling Price
                 var targetSellingPrice = rec.getValue({fieldId: 'custrecord_br_itdv_item_base_price'});
-                if (targetSellingPrice){
-                    basePrice = targetSellingPrice;
-                }
+                basePrice = targetSellingPrice;  //in case we add buffers/modifiers to target selling price in the future.
+
 
                 //Target Gross Margin %  //todo get john's reverse formula and use this var to calculate a target selling price.
                 // var targetGrossMarginPct = rec.getValue({fieldId: 'custrecord_br_itdv_target_margin_pct'});
@@ -217,9 +221,7 @@ define(['N/search', 'N/log', 'N/record', './BR_LIB_Item_Costing'],
                 var tariffPerUnit = tariffInformation.tariffDutyPerUnit;
                 var tariffTotal = (purchasePrice * (tariffPct * 0.01)) + tariffPerUnit;
 
-                    // logModule.debug({title: 'Tariff Pct Orig', details: tariffPct});
-                    // logModule.debug({title: 'Tariff Total Orig', details: tariffTotal});
-                    logModule.debug({title: 'Tariff Total ROUND', details: tariffTotal});
+                    logModule.debug({title: 'Tariff Total', details: tariffTotal});
 
                 // logModule.debug({title: 'Tariff Pct ROUND', details: tariffPct});
 
@@ -277,8 +279,13 @@ define(['N/search', 'N/log', 'N/record', './BR_LIB_Item_Costing'],
             // logModule.debug({title: 'Total Landed Cost', details: landedCostTotal});
             rec.setValue({fieldId: 'custrecord_br_itdv_total_landed_cost', value: landedCostTotal.toFixed(2)});
 
+            logModule.debug({title: 'Landed Cost Total', details: landedCostTotal});
+            logModule.debug({title: 'Purchase Price', details: purchasePrice});
+            logModule.debug({title: 'landing Cost SUM', details: landedCostTotal + purchasePrice});
+
             //sum up first cost(purchase price) + total landing cost
             var landingCostPriceCalc = (purchasePrice + landedCostTotal);
+            logModule.debug({title: 'Landing Cost Total', details: landingCostPriceCalc});
             rec.setValue({fieldId: 'custrecord_br_itdv_landed_total', value: landingCostPriceCalc.toFixed(2)});
 
 //*******************************************************
